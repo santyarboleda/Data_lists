@@ -1,0 +1,26 @@
+{% extends 'canvas.html' %}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-5 offset-md-3">
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{ message }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %} 
+            {% endif %}
+            {% endwith %}
+
+            <p>Resultado.</p>
+            {% for table in tables %}
+                <h2>{{titles[loop.index]}}</h2>
+                {{ table|safe }}
+            {% endfor %}
+    </div>
+</div>
+{% endblock %}
