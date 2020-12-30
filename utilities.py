@@ -118,25 +118,25 @@ class Utilities:
 
         # create result dataframe
         df_result = pd.DataFrame()
-        df_result["nombre_completo"] = list_
-        df_result["eu_list"] = self.list_validation(names_eu, list_)
-        df_result["ss_list"] = self.list_validation(
-            list(df_entities_ss["nombre"].values), list_
-        )
+        df_result["Nombre Completo"] = list_
+        df_result["Lista de la Unión Europea"] = self.list_validation(names_eu, list_)
+        df_result[
+            "Lista de la Secretaria de Estado de Estados Unidos"
+        ] = self.list_validation(list(df_entities_ss["nombre"].values), list_)
 
-        df_result["ofac_list"] = self.list_validation(
+        df_result["Lista OFAC - Clinton"] = self.list_validation(
             list(df_people_ofac["nombre"].values)
             + list(df_entities_ofac["nombre"].values),
             list_,
         )
 
-        df_result["onu_list"] = self.list_validation(
+        df_result["Lista de las Naciones Unidas"] = self.list_validation(
             list(df_people_onu["nombre_completo"].values)
             + list(df_entities_onu["nombre"].values),
             list_,
         )
 
-        df_result["fv_list"] = self.list_validation(
+        df_result["Lista de proveedores fictios en Colombia"] = self.list_validation(
             list(df_thirdpart_fv["nombre"].values), list_
         )
 
@@ -172,10 +172,12 @@ class Utilities:
 
         # create result dataframe
         df_result = pd.DataFrame()
-        df_result["id"] = list_
-        df_result["eu_list"] = self.list_validation(id_eu, list_)
-        df_result["onu_list"] = self.list_validation(id_onu, list_)
-        df_result["fv_list"] = self.list_validation(id_fv, list_)
+        df_result["Identificación"] = list_
+        df_result["Lista de la Unión Europea"] = self.list_validation(id_eu, list_)
+        df_result["Lista de las Naciones Unidas"] = self.list_validation(id_onu, list_)
+        df_result["Lista de proveedores fictios en Colombia"] = self.list_validation(
+            id_fv, list_
+        )
         return df_result
 
     # function to build result view by id selection
@@ -187,7 +189,7 @@ class Utilities:
         pp_onu = self.flat_column(list(df_people_onu["pasaporte"].astype(str)))
 
         df_result = pd.DataFrame()
-        df_result["passport"] = list_
-        df_result["eu_list"] = self.list_validation(pp_eu, list_)
-        df_result["onu_list"] = self.list_validation(pp_onu, list_)
+        df_result["Número de pasaporte"] = list_
+        df_result["Lista de la Unión Europea"] = self.list_validation(pp_eu, list_)
+        df_result["Lista de las Naciones Unidas"] = self.list_validation(pp_onu, list_)
         return df_result
