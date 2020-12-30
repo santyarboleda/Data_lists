@@ -90,6 +90,7 @@ class Utilities:
         df_entities_ofac,
         df_people_onu,
         df_entities_onu,
+        df_thirdpart_fv,
     ):
         # european union validation
         df_people_eu["nombre_completo"] = (
@@ -134,7 +135,11 @@ class Utilities:
             + list(df_entities_onu["nombre"].values),
             list_,
         )
-        print(list(df_people_onu["nombre_completo"].values))
+
+        df_result["fv_list"] = self.list_validation(
+            list(df_thirdpart_fv["nombre"].values), list_
+        )
+
         return df_result
 
     # function to build result view by id selection
@@ -156,18 +161,21 @@ class Utilities:
     #     return df_result
 
     # function to build result view by id selection
-    def result_by_id(self, list_, df_people_eu, df_people_onu):
+    def result_by_id(self, list_, df_people_eu, df_people_onu, df_thirdpart_fv):
         # european union list data
         id_eu = self.flat_column(list(df_people_eu["identificacion"].astype(str)))
 
         # onu list data
         id_onu = self.flat_column(list(df_people_onu["identificacion"].astype(str)))
 
+        id_fv = self.flat_column(list(df_thirdpart_fv["identificacion"].astype(str)))
+
         # create result dataframe
         df_result = pd.DataFrame()
         df_result["id"] = list_
         df_result["eu_list"] = self.list_validation(id_eu, list_)
         df_result["onu_list"] = self.list_validation(id_onu, list_)
+        df_result["fv_list"] = self.list_validation(id_fv, list_)
         return df_result
 
     # function to build result view by id selection

@@ -9,11 +9,13 @@ from flask import (
     send_from_directory,
 )
 import pandas as pd
+import utilities
 from list_eu.utilities import Utilities as eu_utilities
 from list_ssus.utilities import Utilities as ss_utilities
 from list_ofac.utilities import Utilities as ofac_utilities
 from list_onu.utilities import Utilities as onu_utilities
-import utilities
+from list_fv.utilities import Utilities as fv_utilities
+
 
 # initializations
 app = Flask(__name__)
@@ -22,6 +24,7 @@ utl_eu = eu_utilities()
 utl_ss = ss_utilities()
 utl_ofac = ofac_utilities()
 utl_onu = onu_utilities()
+utl_fv = fv_utilities()
 
 # Settings
 app.secret_key = "secretkey"
@@ -46,9 +49,11 @@ def result():
     # read list ofac-clinton
     df_people_ofac, df_entities_ofac = utl_ofac.read_data()
 
-    # read list onu-clinton
+    # read list onu
     df_people_onu, df_entities_onu = utl_onu.read_data()
-    # print(df_people_onu)
+
+    # read list ficticial vendors
+    df_thirdpart_fv = utl_fv.read_data()
 
     # check selected option
     if option == "nombre":
@@ -75,6 +80,7 @@ def result():
                 df_entities_ofac,
                 df_people_onu,
                 df_entities_onu,
+                df_thirdpart_fv,
             )
     elif option == "identificacion":
         list_ = list(filter(None, list_))
@@ -89,7 +95,9 @@ def result():
         # )
         # return redirect(url_for("Index"))
         else:
-            df_result = utl.result_by_id(list_, df_people_eu, df_people_onu)
+            df_result = utl.result_by_id(
+                list_, df_people_eu, df_people_onu, df_thirdpart_fv
+            )
     else:
         list_ = list(filter(None, list_))
         if len(list_) == 0:
