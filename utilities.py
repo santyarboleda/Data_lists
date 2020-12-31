@@ -48,6 +48,16 @@ class Utilities:
                 coincidences.append("O")
         return coincidences
 
+    # function to validate pep coincidences
+    def pep_list_validation(self, df_people_pep):
+        coincidences = []
+        for index, row in df_people_pep.iterrows():
+            if row["cantidad"] == 0:
+                coincidences.append("O")
+            elif row["cantidad"] > 0:
+                coincidences.append("X(" + str(row["cantidad"]) + ")")
+        return coincidences
+
     def flat_column(self, column):
         column = list(
             map(
@@ -91,6 +101,7 @@ class Utilities:
         df_people_onu,
         df_entities_onu,
         df_thirdpart_fv,
+        df_people_pep,
     ):
         # european union validation
         df_people_eu["nombre_completo"] = (
@@ -139,6 +150,8 @@ class Utilities:
         df_result["Lista de proveedores fictios en Colombia"] = self.list_validation(
             list(df_thirdpart_fv["nombre"].values), list_
         )
+
+        df_result["Lista PEPs en Colombia"] = self.pep_list_validation(df_people_pep)
 
         return df_result
 

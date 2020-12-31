@@ -15,6 +15,7 @@ from list_ssus.utilities import Utilities as ss_utilities
 from list_ofac.utilities import Utilities as ofac_utilities
 from list_onu.utilities import Utilities as onu_utilities
 from list_fv.utilities import Utilities as fv_utilities
+from list_pep.utilities import Utilities as pep_utilities
 
 
 # initializations
@@ -25,6 +26,8 @@ utl_ss = ss_utilities()
 utl_ofac = ofac_utilities()
 utl_onu = onu_utilities()
 utl_fv = fv_utilities()
+utl_pep = pep_utilities()
+
 
 # Settings
 app.secret_key = "secretkey"
@@ -61,6 +64,7 @@ def result():
         list_ = list(filter(None, list_))
         list_ = list(map(lambda x: str(x).strip(), list_))
         list_ = list(map(lambda x: utl.normalize(x), list_))
+
         if len(list_) == 0:
             flash("Debe ingresar al menos un valor a buscar, Inténtelo de nuevo")
             return redirect(url_for("Index"))
@@ -71,6 +75,9 @@ def result():
             return redirect(url_for("Index"))
         else:
             list_ = list(map(lambda x: x.lower(), list_))
+            # read pep people
+            df_people_pep = utl_pep.read_data(list_)
+            print(df_people_pep)
             df_result = utl.result_by_name(
                 list_,
                 df_people_eu,
@@ -81,6 +88,7 @@ def result():
                 df_people_onu,
                 df_entities_onu,
                 df_thirdpart_fv,
+                df_people_pep,
             )
     elif option == "identificacion":
         list_ = list(filter(None, list_))

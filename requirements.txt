@@ -33,6 +33,7 @@ pytz==2020.4
 pyzmq==20.0.0
 regex==2020.11.13
 requests==2.25.0
+selenium==3.141.0
 six==1.15.0
 soupsieve==2.0.1
 tabula-py==2.2.0
@@ -41,6 +42,7 @@ tornado==6.1
 typed-ast==1.4.1
 typing-extensions==3.7.4.3
 urllib3==1.26.2
+webdriver-manager==3.2.2
 wcwidth==0.2.5
 Werkzeug==1.0.1
 wget==3.2
