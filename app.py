@@ -77,7 +77,7 @@ def result():
             list_ = list(map(lambda x: x.lower(), list_))
             # read pep people
             df_people_pep = utl_pep.read_data(list_)
-            print(df_people_pep)
+            # print(df_people_pep)
             df_result = utl.result_by_name(
                 list_,
                 df_people_eu,

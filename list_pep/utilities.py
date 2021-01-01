@@ -5,7 +5,9 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 import time
+import os
 import pandas as pd
 
 
@@ -20,6 +22,10 @@ class Utilities:
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument("window-size=1920x1480")
         chrome_options.add_argument("disable-dev-shm-usage")
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.add_argument("--no-sandbox")
+        chrome_options.add_argument("--remote-debugging-port=9222")
 
         driver = webdriver.Chrome(
             chrome_options=chrome_options,
@@ -27,8 +33,27 @@ class Utilities:
         )
         return driver
 
+    def browser_settings_1(self):
+        options = Options()
+
+        options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        # CHROMEDRIVER_PATH = "./chromedriver.exe"
+        options.add_argument("--headless")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--remote-debugging-port=9222")
+        # options.add_argument('--proxy-server='+proxy)
+        # print(os.environ.get("GOOGLE_CHROME_BIN"))
+        # print(str(os.environ.get("CHROMEDRIVER_PATH")))
+        driver = webdriver.Chrome(
+            # executable_path=str(os.environ.get("CHROMEDRIVER_PATH")),
+            executable_path="./chromedriver.exe",
+            chrome_options=options,
+        )
+        return driver
+
     def pep_scraping(self, list_, driver, search_field, search_button):
-        list_ = list(map(lambda x: x.lower(), list_))
+        # list_ = list(map(lambda x: x.lower(), list_))
         people = {}
         driver.get(URL)
         for i in list_:
@@ -68,7 +93,7 @@ class Utilities:
     def fill_people_data(self, people, list_):
         count = []
         for i in people:
-            print(i, "--", len(people[i]))
+            # print(i, "--", len(people[i]))
             count.append(len(people[i]))
 
         df_pep = pd.DataFrame(list_)
@@ -83,6 +108,7 @@ class Utilities:
 
         # initializing browser
         driver = self.browser_settings()
+        # driver = self.browser_settings_1()
 
         # scrap page result
         people = self.pep_scraping(list_, driver, search_field, search_button)
