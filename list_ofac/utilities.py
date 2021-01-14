@@ -60,10 +60,10 @@ class Utilities:
         df_entities["nombre"] = df_entities["nombre"].apply(lambda x: self.normalize(x))
         df_people["hora_consulta"] = datetime.now(
             pytz.timezone("America/Bogota")
-        ).strftime("%Y%m%d %H%S %p")
+        ).strftime("%Y%m%d %H%M %p")
         df_entities["hora_consulta"] = datetime.now(
             pytz.timezone("America/Bogota")
-        ).strftime("%Y%m%d %H%S %p")
+        ).strftime("%Y%m%d %H%M %p")
         return df_people, df_entities
 
     # function to clean vowels

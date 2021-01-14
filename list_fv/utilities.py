@@ -27,14 +27,16 @@ class Utilities:
         pass
 
     def download_file(self):
-        URL = "https://www.dian.gov.co/Proveedores_Ficticios/Proveedores_Ficticios_02092020.pdf"
+        # URL = "https://www.dian.gov.co/Proveedores_Ficticios/Proveedores_Ficticios_02092020.pdf"
         response = requests.get(URL)
         flag = True
         if response.status_code == 200:
             with open("./list_fv/download/proveedores_ficticios.pdf", "wb") as f:
                 f.write(response.content)
+            print('\narchivo de proveedores ficticios descargado')
         elif response.status_code == 404:
             flag = False
+            print('\nno se puedo descargar el archivo ' + date.today().strftime("%d%m%Y") + ' de proveedores ficticios')
         return flag
 
     def read_file(self):
@@ -69,6 +71,9 @@ class Utilities:
         df["nombre"] = df["nombre"].apply(lambda x: x.lower())
         df["nombre"] = df["nombre"].apply(lambda x: x.replace(".", ""))
         df["nombre"] = df["nombre"].apply(lambda x: self.normalize(x))
+        df["hora_consulta"] = datetime.now(pytz.timezone("America/Bogota")).strftime(
+            "%Y%m%d %H %M %p"
+        )
         return df
 
     # function to create dataframe with people and entities data
@@ -128,7 +133,7 @@ class Utilities:
                     index=False,
                 )
         except:
-            return print("No se pudo descargar el archivo")
+            pass
 
     def read_data(self):
         data_files = os.listdir("./list_fv/data/")

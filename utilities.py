@@ -55,7 +55,8 @@ class Utilities:
             if row["cantidad"] == 0:
                 coincidences.append("O")
             elif row["cantidad"] > 0:
-                coincidences.append("X(" + str(row["cantidad"]) + ")")
+                if row["cantidad"] == 10: coincidences.append("X(" + str(row["cantidad"]) + "+)")
+                else: coincidences.append("X(" + str(row["cantidad"]) + ")")
         return coincidences
 
     def flat_column(self, column):
@@ -130,9 +131,9 @@ class Utilities:
         # create result dataframe
         df_result = pd.DataFrame()
         df_result["Nombre Completo"] = list_
-        df_result["Lista de la Unión Europea"] = self.list_validation(names_eu, list_)
+        df_result["Lista de terroristas de la Unión Europea"] = self.list_validation(names_eu, list_)
         df_result[
-            "Lista de la Secretaria de Estado de Estados Unidos"
+            "Lista de Organizaciones Terroristas del Extranjero del Departamento de Estado de Estados Unidos"
         ] = self.list_validation(list(df_entities_ss["nombre"].values), list_)
 
         df_result["Lista OFAC - Clinton"] = self.list_validation(
@@ -147,7 +148,7 @@ class Utilities:
             list_,
         )
 
-        df_result["Lista de proveedores fictios en Colombia"] = self.list_validation(
+        df_result["Lista de proveedores ficticios en Colombia"] = self.list_validation(
             list(df_thirdpart_fv["nombre"].values), list_
         )
 
@@ -156,22 +157,21 @@ class Utilities:
         return df_result
 
     # function to build result view by id selection
-    # def result_by_id(self, list_, df_people_eu):
-    #     # european union validation
-    #     df_people_eu["full_name"] = (
-    #         df_people_eu["nombre"] + " " + df_people_eu["apellido"]
-    #     )
-    #     df_people_eu["identificacion"].fillna(0, inplace=True)
-    #     id_eu = list(df_people_eu["identificacion"].astype(int))
-    #     list_ = filter(None, list_)
-    #     list_ = [int(i) for i in list_]
-    #     # list_ = [str(i) for i in list_]
-
-    #     # create result dataframe
-    #     df_result = pd.DataFrame()
-    #     df_result["id"] = list_
-    #     df_result["eu_list"] = self.list_validation(id_eu, list_)
-    #     return df_result
+    def result_by_id_number(self, list_, df_people_eu):
+        # european union validation
+        df_people_eu["full_name"] = (
+            df_people_eu["nombre"] + " " + df_people_eu["apellido"]
+        )
+        df_people_eu["identificacion"].fillna(0, inplace=True)
+        id_eu = list(df_people_eu["identificacion"].astype(int))
+        list_ = filter(None, list_)
+        list_ = [int(i) for i in list_]
+        
+        # create result dataframe
+        df_result = pd.DataFrame()
+        df_result["id"] = list_
+        df_result["eu_list"] = self.list_validation(id_eu, list_)
+        return df_result
 
     # function to build result view by id selection
     def result_by_id(self, list_, df_people_eu, df_people_onu, df_thirdpart_fv):
@@ -186,9 +186,9 @@ class Utilities:
         # create result dataframe
         df_result = pd.DataFrame()
         df_result["Identificación"] = list_
-        df_result["Lista de la Unión Europea"] = self.list_validation(id_eu, list_)
+        df_result["Lista de terroristas de la Unión Europea"] = self.list_validation(id_eu, list_)
         df_result["Lista de las Naciones Unidas"] = self.list_validation(id_onu, list_)
-        df_result["Lista de proveedores fictios en Colombia"] = self.list_validation(
+        df_result["Lista de proveedores ficticios en Colombia"] = self.list_validation(
             id_fv, list_
         )
         return df_result
@@ -203,6 +203,6 @@ class Utilities:
 
         df_result = pd.DataFrame()
         df_result["Número de pasaporte"] = list_
-        df_result["Lista de la Unión Europea"] = self.list_validation(pp_eu, list_)
+        df_result["Lista de terroristas de la Unión Europea"] = self.list_validation(pp_eu, list_)
         df_result["Lista de las Naciones Unidas"] = self.list_validation(pp_onu, list_)
         return df_result

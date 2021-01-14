@@ -10,12 +10,15 @@ from flask import (
 )
 import pandas as pd
 import utilities
+import os
 from list_eu.utilities import Utilities as eu_utilities
 from list_ssus.utilities import Utilities as ss_utilities
 from list_ofac.utilities import Utilities as ofac_utilities
 from list_onu.utilities import Utilities as onu_utilities
 from list_fv.utilities import Utilities as fv_utilities
 from list_pep.utilities import Utilities as pep_utilities
+
+from datetime import date, datetime, timezone
 
 
 # initializations
@@ -35,6 +38,10 @@ app.secret_key = "secretkey"
 # routines
 @app.route("/")
 def Index():
+    data_files = os.listdir("./lists_result/download/")
+    for file in data_files:
+        file_path = os.path.join('./lists_result/download/', file)
+        os.remove(file_path)    
     return render_template("index.html")
 
 
@@ -60,7 +67,6 @@ def result():
 
     # check selected option
     if option == "nombre":
-        # print(utl.digit_input_validation(list_))
         list_ = list(filter(None, list_))
         list_ = list(map(lambda x: str(x).strip(), list_))
         list_ = list(map(lambda x: utl.normalize(x), list_))
@@ -77,7 +83,6 @@ def result():
             list_ = list(map(lambda x: x.lower(), list_))
             # read pep people
             df_people_pep = utl_pep.read_data(list_)
-            # print(df_people_pep)
             df_result = utl.result_by_name(
                 list_,
                 df_people_eu,
@@ -116,14 +121,40 @@ def result():
             df_result = utl.result_by_passport(list_, df_people_eu, df_people_onu)
     if df_result.shape[0] > 0:
         flash("Información procesada correctamente")
+        df_result.to_excel('./lists_result/download/result.xls')
         return render_template(
             "result.html",
-            tables=[df_result.to_html(classes="data", index=False)],
+            tables=[df_result.to_html(index=False)],
             titles=[df_result.columns],
+            column_names=df_result.columns.values,
+            row_data=list(df_result.values.tolist()),
+            zip=zip,
+            option=option,
+            eu_date = datetime.strptime(df_people_eu.iloc[0]['hora_consulta'], "%Y%m%d %H %M %p"),
+            ss_date = datetime.strptime(df_entities_ss.iloc[0]['hora_consulta'], "%Y%m%d %H %M %p"),
+            onu_date = datetime.strptime(df_people_onu.iloc[0]['hora_consulta'], "%Y%m%d %H%M %p"),
+            ofac_date = datetime.strptime(df_people_ofac.iloc[0]['hora_consulta'], "%Y%m%d %H%M %p"),
+            tr_date = datetime.strptime(df_thirdpart_fv.iloc[0]['hora_consulta'], "%Y%m%d %H %M %p"),
         )
+
+
+# function to load lists page
+@app.route('/lists')
+def lists():
+    return render_template('lists.html')
+
+# function to load about page
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+# Función para descargar el archivo
+@app.route('/download')
+def download():
+    return send_file('./lists_result/download/result.xls', as_attachment=True)
 
 
 # starting the app
 if __name__ == "__main__":
 
-    app.run(port=3000, debug=True)
+    app.run(port=3000, debug=True, host='0.0.0.0')

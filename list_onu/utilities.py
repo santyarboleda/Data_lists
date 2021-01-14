@@ -31,6 +31,8 @@ class Utilities:
         d = {}
         xtree = ET.parse(xtree)
         xroot = xtree.getroot()
+        #xtree = ET.parse(encoding="utf-8")
+        #xroot= ET.fromstring(xmlstring, parser=xtree)
         cont = 0
         for node in xroot[0]:
             ds = {}
@@ -123,7 +125,7 @@ class Utilities:
 
     def clean_people_data(self, df):
         df["hora_consulta"] = datetime.now(pytz.timezone("America/Bogota")).strftime(
-            "%Y%m%d %H%S %p"
+            "%Y%m%d %H%M %p"
         )
         df.rename(
             columns={
@@ -172,6 +174,7 @@ class Utilities:
 
     def clean_entities_data(self, df):
         df.rename(columns={"FIRST_NAME": "nombre"}, inplace=True)
+        df["nombre"] = df["nombre"].apply(lambda x: str(x).strip())
         df["nombre"] = df["nombre"].apply(lambda x: x.lower())
         df["nombre"] = df["nombre"].apply(lambda x: self.normalize(x))
 
@@ -211,7 +214,7 @@ class Utilities:
         df = pd.DataFrame()
         df["nombre"] = list(map(lambda x: self.remove_punctuation(x), result))
         df["hora_consulta"] = datetime.now(pytz.timezone("America/Bogota")).strftime(
-            "%Y%m%d %H %S %p"
+            "%Y%m%d %H%M %p"
         )
 
         return df

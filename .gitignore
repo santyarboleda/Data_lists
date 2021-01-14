@@ -100,8 +100,10 @@ celerybeat-schedule
 # Environments
 .env
 .venv
+.lists_env
 env/
 venv/
+lists_env/
 ENV/
 env.bak/
 venv.bak/

@@ -35,19 +35,12 @@ class Utilities:
 
     def browser_settings_1(self):
         options = Options()
-
-        options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-        # CHROMEDRIVER_PATH = "./chromedriver.exe"
         options.add_argument("--headless")
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
         options.add_argument("--remote-debugging-port=9222")
-        # options.add_argument('--proxy-server='+proxy)
-        # print(os.environ.get("GOOGLE_CHROME_BIN"))
-        # print(str(os.environ.get("CHROMEDRIVER_PATH")))
         driver = webdriver.Chrome(
-            # executable_path=str(os.environ.get("CHROMEDRIVER_PATH")),
-            executable_path="./chromedriver.exe",
+            executable_path="./chromedriver",
             chrome_options=options,
         )
         return driver
@@ -107,8 +100,8 @@ class Utilities:
         search_button = "find"
 
         # initializing browser
-        driver = self.browser_settings()
-        # driver = self.browser_settings_1()
+        #driver = self.browser_settings()
+        driver = self.browser_settings_1()
 
         # scrap page result
         people = self.pep_scraping(list_, driver, search_field, search_button)

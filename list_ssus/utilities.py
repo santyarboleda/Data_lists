@@ -38,7 +38,7 @@ class Utilities:
             for i in range(indice, len(entity)):
                 entity.pop(indice)
 
-        # # delete '\n'
+        # delete '\n'
         indice = 0
         for i in entity:
             if "/" in i:
@@ -94,7 +94,7 @@ class Utilities:
         df_entities.rename(columns={0: "nombre"}, inplace=True)
         df_entities["hora_consulta"] = datetime.now(
             pytz.timezone("America/Bogota")
-        ).strftime("%Y%m%d %H %S %p")
+        ).strftime("%Y%m%d %H %M %p")
         df_entities["nombre"] = df_entities["nombre"].str.lower()
         return df_entities
 

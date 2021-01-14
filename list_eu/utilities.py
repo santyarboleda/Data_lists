@@ -163,7 +163,7 @@ class Utilities:
             inplace=True,
         )
         df["hora_consulta"] = datetime.now(pytz.timezone("America/Bogota")).strftime(
-            "%Y%m%d %H %S %p"
+            "%Y%m%d %H %M %p"
         )
 
         # clean identification and passport
@@ -225,7 +225,7 @@ class Utilities:
         df.drop(columns=[0], inplace=True)
         df.rename(columns={"col1": "nombre"}, inplace=True)
         df["hora_consulta"] = datetime.now(pytz.timezone("America/Bogota")).strftime(
-            "%Y%m%d %H %S %p"
+            "%Y%m%d %H %M %p"
         )
         return df
 

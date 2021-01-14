@@ -1,0 +1,48 @@
+{% extends 'canvas.html' %}
+{% block body %}
+
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+        
+        
+
+        <div class="card card-body">
+                    
+                    <strong><p>LISTAS RESTRICTIVAS</p></strong>
+                    <p>La aplicacion realiza la extraccion de la información  que se encuentra en lista de terroristas de la Unión Europea, lista de organizaciones
+                        terroristas del Departamento de Estado de Estados Unidos, lista OFAC - Clinton, lista ONU, Lista de personas publicamente expuestas en Colombia 
+                        y Proveedores ficticios de la DIAN</p>
+                    <p> Se detallan las listas consultadas a continuacion: </p>
+                    <strong><p>Lista de terroristas de la Unión Europea.</p></strong>
+                    <p>Es una lista que contiene personas y entidades sobre las
+                    cuales la Unión europea está tomando acciones especificas en la lucha contra el terrorismo. Esta
+                    información se visualiza directamente como texto en el sitio web de la secretaría de estado.</p>
+                    <strong><p>Lista de Organizaciones Terroristas del Extranjero del Departamento de Estado de Estados Unidos.</p></strong>
+                    <p>Es una lista que contiene las organizaciones terroristas extranjeras, emitida por la
+                        Secretaría del Estado y la cual se constituye como un medio eficaz para reducir el apoyo a las
+                        actividades terroristas. Esta información se visualiza directamente como texto en el sitio web de
+                        la Secretaría de Estado.</p>
+                    <strong><p>Lista OFAC – Clinton.</p></strong>
+                    <p> Es una lista emitida por la Oficina del Tesoro de los Estados Unidos la cual
+                        proporciona un aviso sobre acciones que esta tomando OFAC a entidades y personas y a los cuales
+                        se les han bloqueado sus activos. Al ser consultada, devuelve un archivo XML con la información
+                        reportada.</p>
+                    <strong><p>Lista ONU.</p></strong>
+                    <p> Es una lista que contiene las entidades y las personas que están siendo sometidas a
+                        medidas impuestas por el Consejo de Seguridad de las Naciones Unidas. Al ser consultada,
+                        devuelve un archivo XML con la información reportada.</p>
+                    <strong><p>Lista de Proveedores Ficticios.</p></strong>
+                    <p> Es una lista emitida por la DIAN, la cual contiene información de
+                        proveedores que han sido identificados como proveedores ficticios y que representan un riesgo
+                        para las compañías. Esta lista se consulta en formato PDF.</p>
+                    <strong><p>Lista PEPs.</p></strong>
+                    <p> Esta base de datos contiene la información de todos los servidores públicos, los cuales
+                        son personas expuestas públicamente y las cuales pueden representar un riesgo al establecer
+                        relaciones comerciales con ellos. Esta información se consulta directamente en el sitio web de la
+                        función pública en Colombia, y se toma como texto directamente del buscador que ofrece dicho
+                        sitio.</p>
+                             
+        </div>
+    </div>
+</div>
+{% endblock %}
