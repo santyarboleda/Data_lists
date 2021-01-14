@@ -7,14 +7,17 @@ colorama==0.4.4
 configparser==5.0.1
 crayons==0.4.0
 distro==1.5.0
+et-xmlfile==1.0.1
 Flask==1.1.2
 gunicorn==20.0.4
 idna==2.10
 itsdangerous==1.1.0
+jdcal==1.4.1
 Jinja2==2.11.2
 lxml==4.6.2
 MarkupSafe==1.1.1
 numpy==1.19.4
+openpyxl==3.0.5
 pandas==1.2.0
 pyparsing==2.4.7
 python-dateutil==2.8.1
@@ -28,4 +31,4 @@ urllib3==1.26.2
 webdriver-manager==3.2.2
 Werkzeug==1.0.1
 wget==3.2
-xlwt
+xlwt==1.3.0
