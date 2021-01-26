@@ -15,5 +15,5 @@ Las listas que se consultan son las siguientes:
 
 Dado que las bases de datos tienen diferentes formatos, y contienen información de los terceros solo de nombres, nombres e identificación, nombres y pasaportes y nombres en diferente orden (nombres y apellidos - apellidos y nombres), se presenta la siguiente imagen como resumen de estos casos:
 
-![Screenshot](static/img/Fuentes de datos.png)
+![Screenshot](../master/static/img/Fuentes de datos.png)
 
