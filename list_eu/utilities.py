@@ -17,7 +17,9 @@ import pytz
 URL = (
     "https://eur-lex.europa.eu/legal-content/es/TXT/HTML/?uri=CELEX:32019D1341&from=en"
 )
-
+PEOPLE_FILE = "./list_eu/data/list_eu_people_"
+ENTITIES_FILE = "./list_eu/data/list_eu_entities_"
+DATA_PATH = "./list_eu/data/"
 
 class Utilities:
     def __init__(self):
@@ -251,9 +253,10 @@ class Utilities:
     def get_data_eu_list(self):
         req = requests.get(URL)
         soup = BeautifulSoup(req.content, "html.parser")
-
+        
         # read tables
         personas, entidades = self.read_page(soup)
+        print('sitio de terroritas de la union europea leido correctamente')
 
         # fill people data
         df_personas = self.fill_people_data(personas)
@@ -268,11 +271,11 @@ class Utilities:
         df_entidades = self.fill_entities_data(entidades)
 
         return df_personas.to_csv(
-            "./list_eu/data/list_eu_people_" + date.today().strftime("%d%m%Y") + ".csv",
+            PEOPLE_FILE + date.today().strftime("%d%m%Y") + ".csv",
             sep=";",
             index=False,
         ), df_entidades.to_csv(
-            "./list_eu/data/list_eu_entities_"
+            ENTITIES_FILE
             + date.today().strftime("%d%m%Y")
             + ".csv",
             sep=";",
@@ -280,7 +283,7 @@ class Utilities:
         )
 
     def read_data(self):
-        data_files = os.listdir("./list_eu/data/")
+        data_files = os.listdir(DATA_PATH)
         files_people = []
         files_entities = []
         for i in data_files:
@@ -290,13 +293,17 @@ class Utilities:
                 files_entities.append(datetime.strptime(i[17:-4], "%d%m%Y").date())
 
         return pd.read_csv(
-            "./list_eu/data/list_eu_people_"
+            PEOPLE_FILE
             + max(files_people).strftime("%d%m%Y")
             + ".csv",
             sep=";",
         ), pd.read_csv(
-            "./list_eu/data/list_eu_entities_"
+            ENTITIES_FILE
             + max(files_entities).strftime("%d%m%Y")
             + ".csv",
             sep=";",
         )
+
+if __name__ == "__main__":
+    utl = Utilities()
+    utl.get_data_eu_list()

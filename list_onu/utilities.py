@@ -16,14 +16,18 @@ import pytz
 
 
 URL = "https://scsanctions.un.org/resources/xml/sp/consolidated.xml"
-
+PEOPLE_FILE = "./list_onu/data/list_onu_people_"
+ENTITIES_FILE = "./list_onu/data/list_onu_entities_"
+DATA_PATH = "./list_onu/data/"
+XML_FILE = "./list_onu/download/consolidated.xml"
+DOWNLOAD_FILES = "./list_onu/download/*"
 
 class Utilities:
     def __init__(self):
         pass
 
     def download_file(self):
-        return wget.download(URL, "./list_onu/download/consolidated.xml")
+        return wget.download(URL, XML_FILE)
 
     def read_page(self, xtree):
 
@@ -237,7 +241,7 @@ class Utilities:
         return re.sub("[%s]" % re.escape(string.punctuation), "", text)
 
     def clean_directory(self):
-        files = glob.glob("./list_onu/download/*")
+        files = glob.glob(DOWNLOAD_FILES)
         for f in files:
             os.remove(f)
         return "Folder content deleted"
@@ -250,10 +254,12 @@ class Utilities:
 
         # download xml file
         self.download_file()
+        print('\narchivo de lista onu descargado correctamente')
 
         # read file content
-        xtree = "./list_onu/download/consolidated.xml"
+        xtree = XML_FILE
         df_people, df_entities = self.read_page(xtree)
+        print('archivo de lista onu leido correctamente')
 
         # clean people data
         df_people = self.clean_people_data(df_people)
@@ -262,13 +268,13 @@ class Utilities:
         df_entities = self.clean_entities_data(df_entities)
         df_entities = self.fill_entities_data(df_entities)
         return df_people.to_csv(
-            "./list_onu/data/list_onu_people_"
+            PEOPLE_FILE
             + date.today().strftime("%d%m%Y")
             + ".csv",
             sep=";",
             index=False,
         ), df_entities.to_csv(
-            "./list_onu/data/list_onu_entities_"
+            ENTITIES_FILE
             + date.today().strftime("%d%m%Y")
             + ".csv",
             sep=";",
@@ -276,7 +282,7 @@ class Utilities:
         )
 
     def read_data(self):
-        data_files = os.listdir("./list_onu/data/")
+        data_files = os.listdir(DATA_PATH)
         files_people = []
         files_entities = []
         for i in data_files:
@@ -286,12 +292,12 @@ class Utilities:
                 files_entities.append(datetime.strptime(i[18:-4], "%d%m%Y").date())
 
         return pd.read_csv(
-            "./list_onu/data/list_onu_people_"
+            PEOPLE_FILE
             + max(files_people).strftime("%d%m%Y")
             + ".csv",
             sep=";",
         ), pd.read_csv(
-            "./list_onu/data/list_onu_entities_"
+            ENTITIES_FILE
             + max(files_entities).strftime("%d%m%Y")
             + ".csv",
             sep=";",

@@ -9,7 +9,6 @@ import os
 import glob
 import tabula
 
-
 # import datetime
 from datetime import date, datetime, timezone
 import pytz
@@ -20,18 +19,21 @@ URL = (
     + date.today().strftime("%d%m%Y")
     + ".pdf"
 )
-
+PEOPLE_ENTITIES_FILE = "./list_fv/data/list_fv_data_"
+DATA_PATH = "./list_fv/data/"
+PDF_FILE = "./list_fv/download/proveedores_ficticios.pdf"
+DOWNLOAD_FILES = "./list_fv/download/*"
 
 class Utilities:
     def __init__(self):
         pass
 
     def download_file(self):
-        # URL = "https://www.dian.gov.co/Proveedores_Ficticios/Proveedores_Ficticios_02092020.pdf"
+        URL = "https://www.dian.gov.co/Proveedores_Ficticios/Proveedores_Ficticios_02092020.pdf"
         response = requests.get(URL)
         flag = True
         if response.status_code == 200:
-            with open("./list_fv/download/proveedores_ficticios.pdf", "wb") as f:
+            with open(PDF_FILE, "wb") as f:
                 f.write(response.content)
             print('\narchivo de proveedores ficticios descargado')
         elif response.status_code == 404:
@@ -41,8 +43,7 @@ class Utilities:
 
     def read_file(self):
         # reading file
-        file = "./list_fv/download/proveedores_ficticios.pdf"
-        table = tabula.read_pdf(file, pages="all")
+        table = tabula.read_pdf(PDF_FILE, pages="all")
 
         # create dataframe
         df = pd.DataFrame()
@@ -98,7 +99,7 @@ class Utilities:
         return s
 
     def clean_directory(self):
-        files = glob.glob("./list_fv/download/*")
+        files = glob.glob(DOWNLOAD_FILES)
         for f in files:
             os.remove(f)
         return "Folder content deleted"
@@ -117,6 +118,7 @@ class Utilities:
 
             # read pdf file
             df_people_entities = self.read_file()
+            print('archivo de proveedores ficticios leido correctamente')
 
             # fill list dataframe
             df_people_entities = self.fill_people_entities_data(df_people_entities)
@@ -126,7 +128,7 @@ class Utilities:
 
             if flag == True:
                 return df_people_entities.to_csv(
-                    "./list_fv/data/list_fv_data_"
+                    PEOPLE_ENTITIES_FILE
                     + date.today().strftime("%d%m%Y")
                     + ".csv",
                     sep=";",
@@ -136,12 +138,12 @@ class Utilities:
             pass
 
     def read_data(self):
-        data_files = os.listdir("./list_fv/data/")
+        data_files = os.listdir(DATA_PATH)
         files = []
         for i in data_files:
             if "list_fv_data" in i:
                 files.append(datetime.strptime(i[13:-4], "%d%m%Y").date())
         return pd.read_csv(
-            "./list_fv/data/list_fv_data_" + max(files).strftime("%d%m%Y") + ".csv",
+            PEOPLE_ENTITIES_FILE + max(files).strftime("%d%m%Y") + ".csv",
             sep=";",
         )

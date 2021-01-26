@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="3" failures="0" skipped="0" tests="3" time="60.558" timestamp="2021-01-26T16:41:30.213049" hostname="santiago-VirtualBox"><testcase classname="" name="unit_test.list_pep_test" time="0.000"><error message="collection failure">unit_test/list_pep_test.py:18: in &lt;module&gt;
+    read_data()
+unit_test/list_pep_test.py:17: in read_data
+    assert utl_pep.read_data(list_)
+list_pep/utilities.py:104: in read_data
+    driver = self.browser_settings_1()
+list_pep/utilities.py:42: in browser_settings_1
+    driver = webdriver.Chrome(
+lists_env/lib/python3.8/site-packages/selenium/webdriver/chrome/webdriver.py:76: in __init__
+    RemoteWebDriver.__init__(
+lists_env/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py:157: in __init__
+    self.start_session(capabilities, browser_profile)
+lists_env/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py:252: in start_session
+    response = self.execute(Command.NEW_SESSION, parameters)
+lists_env/lib/python3.8/site-packages/selenium/webdriver/remote/webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+lists_env/lib/python3.8/site-packages/selenium/webdriver/remote/errorhandler.py:242: in check_response
+    raise exception_class(message, screen, stacktrace)
+E   selenium.common.exceptions.SessionNotCreatedException: Message: session not created
+E   from disconnected: unable to connect to renderer
+E     (Session info: headless chrome=87.0.4280.88)</error></testcase><testcase classname="" name="unit_test.list_ssus_test" time="0.000"><error message="collection failure">unit_test/list_ssus_test.py:22: in &lt;module&gt;
+    read_data()
+unit_test/list_ssus_test.py:21: in read_data
+    assert utl_ssus.read_data(), 'Falla'
+lists_env/lib/python3.8/site-packages/pandas/core/generic.py:1439: in __nonzero__
+    raise ValueError(
+E   ValueError: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().</error></testcase><testcase classname="" name="unit_test.list_utilities_test" time="0.000"><error message="collection failure">unit_test/list_utilities_test.py:5: in &lt;module&gt;
+    Normalize('aplicación')
+unit_test/list_utilities_test.py:4: in Normalize
+    assert Utilities.normalize(s), 'Falla'
+E   TypeError: normalize() missing 1 required positional argument: 's'</error></testcase></testsuite></testsuites>

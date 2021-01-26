@@ -1,0 +1,2 @@
+[run]
+omit = lists_env/*, unit_test/*, app.py

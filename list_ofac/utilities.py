@@ -12,7 +12,9 @@ from datetime import date, datetime, timezone
 import pytz
 
 URL = "https://www.treasury.gov/ofac/downloads/sdn.xml"
-
+PEOPLE_FILE = "./list_ofac/data/list_ofac_people_"
+ENTITIES_FILE = "./list_ofac/data/list_ofac_entities_"
+DATA_PATH = "./list_ofac/data/"
 
 class Utilities:
     def __init__(self):
@@ -90,6 +92,7 @@ class Utilities:
 
         # read xml file
         people, entities = self.read_page(soup)
+        print('lista ofac leida correctamente')
 
         # fill people and entities data
         df_people, df_entities = self.fill_people_entities_data(people, entities)
@@ -97,13 +100,13 @@ class Utilities:
         df_entities["nombre"] = df_entities["nombre"].str.lower()
 
         return df_people.to_csv(
-            "./list_ofac/data/list_ofac_people_"
+            PEOPLE_FILE
             + date.today().strftime("%d%m%Y")
             + ".csv",
             sep=";",
             index=False,
         ), df_entities.to_csv(
-            "./list_ofac/data/list_ofac_entities_"
+            ENTITIES_FILE
             + date.today().strftime("%d%m%Y")
             + ".csv",
             sep=";",
@@ -111,7 +114,7 @@ class Utilities:
         )
 
     def read_data(self):
-        data_files = os.listdir("./list_ofac/data/")
+        data_files = os.listdir(DATA_PATH)
         files_people = []
         files_entities = []
         for i in data_files:
@@ -121,12 +124,12 @@ class Utilities:
                 files_entities.append(datetime.strptime(i[19:-4], "%d%m%Y").date())
 
         return pd.read_csv(
-            "./list_ofac/data/list_ofac_people_"
+            PEOPLE_FILE
             + max(files_people).strftime("%d%m%Y")
             + ".csv",
             sep=";",
         ), pd.read_csv(
-            "./list_ofac/data/list_ofac_entities_"
+            ENTITIES_FILE
             + max(files_entities).strftime("%d%m%Y")
             + ".csv",
             sep=";",

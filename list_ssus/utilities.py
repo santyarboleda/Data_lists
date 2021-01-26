@@ -13,6 +13,8 @@ from datetime import date, datetime, timezone
 import pytz
 
 URL = "https://www.state.gov/foreign-terrorist-organizations/"
+ENTITIES_FILE = "./list_ssus/data/list_ssus_entities_"
+DATA_PATH = "./list_ssus/data/"
 #%%
 class Utilities:
     def __init__(self):
@@ -103,13 +105,13 @@ class Utilities:
 
         req = requests.get(URL)
         soup = BeautifulSoup(req.content, "html.parser")
-
+        print('sitio de terroristas del departamento de estado leido correctamente')
         entity = self.read_page(soup)
 
         df_entities = self.fill_entities_data(entity)
 
         return df_entities.to_csv(
-            "./list_ssus/data/list_ssus_entities_"
+            ENTITIES_FILE
             + date.today().strftime("%d%m%Y")
             + ".csv",
             sep=";",
@@ -117,13 +119,13 @@ class Utilities:
         )
 
     def read_data(self):
-        data_files = os.listdir("./list_ssus/data/")
+        data_files = os.listdir(DATA_PATH)
         files_entities = []
         for i in data_files:
             if "list_ssus_entities" in i:
                 files_entities.append(datetime.strptime(i[19:-4], "%d%m%Y").date())
         return pd.read_csv(
-            "./list_ssus/data/list_ssus_entities_"
+            ENTITIES_FILE
             + max(files_entities).strftime("%d%m%Y")
             + ".csv",
             sep=";",

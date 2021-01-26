@@ -17,7 +17,6 @@ from list_ofac.utilities import Utilities as ofac_utilities
 from list_onu.utilities import Utilities as onu_utilities
 from list_fv.utilities import Utilities as fv_utilities
 from list_pep.utilities import Utilities as pep_utilities
-
 from datetime import date, datetime, timezone
 
 
@@ -30,17 +29,20 @@ utl_ofac = ofac_utilities()
 utl_onu = onu_utilities()
 utl_fv = fv_utilities()
 utl_pep = pep_utilities()
+DOWNLOAD_PATH = "./lists_result/download/"
+RESULT_FILE = './lists_result/download/result.xls'
 
 
 # Settings
 app.secret_key = "secretkey"
 
+
 # routines
 @app.route("/")
 def Index():
-    data_files = os.listdir("./lists_result/download/")
+    data_files = os.listdir(DOWNLOAD_PATH)
     for file in data_files:
-        file_path = os.path.join('./lists_result/download/', file)
+        file_path = os.path.join(DOWNLOAD_PATH, file)
         os.remove(file_path)    
     return render_template("index.html")
 
@@ -121,7 +123,7 @@ def result():
             df_result = utl.result_by_passport(list_, df_people_eu, df_people_onu)
     if df_result.shape[0] > 0:
         flash("Información procesada correctamente")
-        df_result.to_excel('./lists_result/download/result.xls')
+        df_result.to_excel(RESULT_FILE)
         return render_template(
             "result.html",
             tables=[df_result.to_html(index=False)],
@@ -151,7 +153,7 @@ def about():
 # Función para descargar el archivo
 @app.route('/download')
 def download():
-    return send_file('./lists_result/download/result.xls', as_attachment=True)
+    return send_file(RESULT_FILE, as_attachment=True)
 
 
 # starting the app
