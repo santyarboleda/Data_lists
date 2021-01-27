@@ -13,8 +13,19 @@ Las listas que se consultan son las siguientes:
 
 # Consultas en las bases de datos
 
-Dado que las bases de datos tienen diferentes formatos, y contienen información de los terceros solo de nombres, nombres e identificación, nombres y pasaportes y nombres en diferente orden (nombres y apellidos - apellidos y nombres), se presenta la siguiente imagen como resumen de estos casos:
+Dado que las bases de datos tienen diferentes formatos, y contienen información de los terceros solo de nombres, nombres e identificación, nombres y pasaportes y nombres en diferente orden (nombres y apellidos - apellidos y nombres), se presenta la siguiente imagen como resumen de estos casos y la integracion de cada lista en la aplicación:
 
 ![Screenshot](https://github.com/santyarboleda/Data_lists/blob/master/static/img/Fuentes%20de%20datos.png)
-![logo](../master/static/img/logo_unal.png)
+
+# Aplicación
+
+La aplicación fue desarrollada con el framework Flask y actualmente se encuentra disponible en docker hub, se puede obtener con el siguiente comando:
+
+docker pull sarboledaq/laft_lists:latest
+
+Trabajo desarrollado por: Santiago Arboleda Quiroz
+Email: sarboledaq@unal.edu.co 
+
+© Copyright 2021, Santiago Arboleda
+
 
