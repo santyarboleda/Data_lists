@@ -23,7 +23,8 @@ La aplicación fue desarrollada con el framework Flask y actualmente se encuentr
 
 docker pull sarboledaq/laft_lists:latest
 
-Trabajo desarrollado por: Santiago Arboleda Quiroz
+Trabajo desarrollado por: Santiago Arboleda Quiroz.
+
 Email: sarboledaq@unal.edu.co 
 
 © Copyright 2021, Santiago Arboleda
