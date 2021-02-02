@@ -30,7 +30,7 @@ utl_onu = onu_utilities()
 utl_fv = fv_utilities()
 utl_pep = pep_utilities()
 DOWNLOAD_PATH = "./lists_result/download/"
-RESULT_FILE = './lists_result/download/result.xls'
+RESULT_FILE = './lists_result/download/result.csv'
 
 
 # Settings
@@ -123,7 +123,7 @@ def result():
             df_result = utl.result_by_passport(list_, df_people_eu, df_people_onu)
     if df_result.shape[0] > 0:
         flash("Información procesada correctamente")
-        df_result.to_excel(RESULT_FILE)
+        df_result.to_csv(RESULT_FILE)
         return render_template(
             "result.html",
             tables=[df_result.to_html(index=False)],
