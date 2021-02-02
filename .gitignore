@@ -129,3 +129,6 @@ dmypy.json
 
 #CSV
 .data/CSV
+
+# sonarqube
+.scannerwork/*
