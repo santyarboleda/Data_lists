@@ -7,8 +7,6 @@ from datetime import date
 from bs4 import BeautifulSoup
 import os
 import string
-
-# import datetime
 from datetime import date, datetime, timezone
 import pytz
 
@@ -18,6 +16,7 @@ DATA_PATH = "./list_ssus/data/"
 #%%
 class Utilities:
     def __init__(self):
+        # This is the build method
         pass
 
     def read_page(self, soup):
@@ -25,7 +24,6 @@ class Utilities:
         # tabla = soup.find_all("div", {"class": "table-responsive double-scroll"})
         tabla = soup.find_all("td")
         entity = []
-        # patron = Suppress(Regex('*[0-9]\/'))
         for i in tabla:
             entity.append(i.text.strip())
 

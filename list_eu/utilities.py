@@ -8,8 +8,6 @@ import itertools
 import numpy as np
 import os
 import string
-
-# import datetime
 from datetime import date, datetime, timezone
 import pytz
 
@@ -23,6 +21,7 @@ DATA_PATH = "./list_eu/data/"
 
 class Utilities:
     def __init__(self):
+        # This is the build method
         pass
 
     # function to extract a name of dataframe column
@@ -149,8 +148,9 @@ class Utilities:
                     i.pop(0)
                 row["col3"] = list(itertools.chain(*psw))
                 row["col4"] = list(itertools.chain(*idn))
-            except:
-                pass
+            except Exception as e:
+                print('no fue posible parsear los valores')
+                raise e
         return df
 
     def clean_people_data(self, df):

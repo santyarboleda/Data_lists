@@ -18,7 +18,8 @@ def remove_punctuation(text):
 remove_punctuation('Con esto termina la frase.')
 
 def read_data():
-    assert utl_ssus.read_data(), 'Falla'
+    df = utl_ssus.read_data()
+    assert len(df.columns) > 1, 'Falla'
 read_data()
 
 def get_data():

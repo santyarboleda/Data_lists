@@ -132,3 +132,6 @@ dmypy.json
 
 # sonarqube
 .scannerwork/*
+
+# junit
+junit/*

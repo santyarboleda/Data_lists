@@ -6,8 +6,6 @@ from datetime import date
 from bs4 import BeautifulSoup
 import os
 import string
-
-# import datetime
 from datetime import date, datetime, timezone
 import pytz
 
@@ -18,18 +16,19 @@ DATA_PATH = "./list_ofac/data/"
 
 class Utilities:
     def __init__(self):
+        # This is the build method
         pass
 
     def read_page(self, soup):
         # read elements in tag
-        list = soup.find_all("sdnEntry")
+        list_ = soup.find_all("sdnEntry")
         people = []
         entities = []
 
         # store data in a dictionary
         ind = 0
         d = {}
-        for i in list:
+        for i in list_:
             ds = {}
             for j in i.children:
                 ds[j.name] = j.string

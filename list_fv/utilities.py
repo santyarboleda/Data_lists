@@ -8,8 +8,6 @@ from bs4 import BeautifulSoup
 import os
 import glob
 import tabula
-
-# import datetime
 from datetime import date, datetime, timezone
 import pytz
 
@@ -26,6 +24,7 @@ DOWNLOAD_FILES = "./list_fv/download/*"
 
 class Utilities:
     def __init__(self):
+        # This is the build method
         pass
 
     def download_file(self):
@@ -134,8 +133,10 @@ class Utilities:
                     sep=";",
                     index=False,
                 )
-        except:
-            pass
+        except Exception as e:
+            print('no se pudo realizar la extraccion de la informacion')
+            raise e
+            
 
     def read_data(self):
         data_files = os.listdir(DATA_PATH)

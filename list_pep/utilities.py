@@ -16,6 +16,7 @@ URL = "https://www.funcionpublica.gov.co/web/sigep/hojas-de-vida"
 
 class Utilities:
     def __init__(self):
+        # This is the build method
         pass
 
     def browser_settings(self):
@@ -46,7 +47,6 @@ class Utilities:
         return driver
 
     def pep_scraping(self, list_, driver, search_field, search_button):
-        # list_ = list(map(lambda x: x.lower(), list_))
         people = {}
         driver.get(URL)
         for i in list_:

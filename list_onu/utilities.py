@@ -9,8 +9,6 @@ import os
 import glob
 import xml.etree.cElementTree as ET
 import numpy as np
-
-# import datetime
 from datetime import date, datetime, timezone
 import pytz
 
@@ -24,6 +22,7 @@ DOWNLOAD_FILES = "./list_onu/download/*"
 
 class Utilities:
     def __init__(self):
+        # This is the build method
         pass
 
     def download_file(self):
@@ -35,24 +34,22 @@ class Utilities:
         d = {}
         xtree = ET.parse(xtree)
         xroot = xtree.getroot()
-        #xtree = ET.parse(encoding="utf-8")
-        #xroot= ET.fromstring(xmlstring, parser=xtree)
         cont = 0
         for node in xroot[0]:
             ds = {}
-            id = []
+            id_ = []
             ty = []
             for v in node.getchildren():
                 if v.tag == "INDIVIDUAL_DOCUMENT":
                     for n in v.getchildren():
                         if n.tag == "NUMBER":
-                            id.append(n.text)
+                            id_.append(n.text)
                         if n.tag == "TYPE_OF_DOCUMENT":
                             ty.append(n.text)
                     ds[v.tag] = list(
                         map(
                             lambda x: x.replace("-", " ").replace("None", "").lower(),
-                            id,
+                            id_,
                         )
                     )
                     ds["TYPE_DOCUMENT"] = list(
@@ -92,7 +89,6 @@ class Utilities:
         cont = 0
         for node in xroot[1]:  # 0 INDIVIDUALS 1 ENTITIES
             ds = {}
-            id = []
             ty = []
             for v in node.getchildren():
                 ds[v.tag] = v.text
@@ -169,10 +165,6 @@ class Utilities:
         df["cuarto_nombre"] = df["cuarto_nombre"].apply(
             lambda x: self.remove_punctuation(str(x))
         )
-        # df["primer_nombre"].fillna("", inplace=True)
-        # df["segundo_nombre"].fillna("", inplace=True)
-        # df["tercer_nombre"].fillna("", inplace=True)
-        # df["cuarto_nombre"].fillna("", inplace=True)
         df = df.fillna(value=np.nan)
         return df
 

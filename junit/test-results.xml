@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="3" failures="0" skipped="0" tests="3" time="60.558" timestamp="2021-01-26T16:41:30.213049" hostname="santiago-VirtualBox"><testcase classname="" name="unit_test.list_pep_test" time="0.000"><error message="collection failure">unit_test/list_pep_test.py:18: in &lt;module&gt;
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="2" failures="0" skipped="0" tests="2" time="57.641" timestamp="2021-02-04T02:00:07.757945" hostname="santiago-VirtualBox"><testcase classname="" name="unit_test.list_pep_test" time="0.000"><error message="collection failure">unit_test/list_pep_test.py:18: in &lt;module&gt;
     read_data()
 unit_test/list_pep_test.py:17: in read_data
     assert utl_pep.read_data(list_)
 list_pep/utilities.py:104: in read_data
     driver = self.browser_settings_1()
-list_pep/utilities.py:42: in browser_settings_1
+list_pep/utilities.py:43: in browser_settings_1
     driver = webdriver.Chrome(
 lists_env/lib/python3.8/site-packages/selenium/webdriver/chrome/webdriver.py:76: in __init__
     RemoteWebDriver.__init__(
@@ -18,14 +18,11 @@ lists_env/lib/python3.8/site-packages/selenium/webdriver/remote/errorhandler.py:
     raise exception_class(message, screen, stacktrace)
 E   selenium.common.exceptions.SessionNotCreatedException: Message: session not created
 E   from disconnected: unable to connect to renderer
-E     (Session info: headless chrome=87.0.4280.88)</error></testcase><testcase classname="" name="unit_test.list_ssus_test" time="0.000"><error message="collection failure">unit_test/list_ssus_test.py:22: in &lt;module&gt;
-    read_data()
-unit_test/list_ssus_test.py:21: in read_data
-    assert utl_ssus.read_data(), 'Falla'
-lists_env/lib/python3.8/site-packages/pandas/core/generic.py:1439: in __nonzero__
-    raise ValueError(
-E   ValueError: The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().</error></testcase><testcase classname="" name="unit_test.list_utilities_test" time="0.000"><error message="collection failure">unit_test/list_utilities_test.py:5: in &lt;module&gt;
-    Normalize('aplicación')
-unit_test/list_utilities_test.py:4: in Normalize
-    assert Utilities.normalize(s), 'Falla'
-E   TypeError: normalize() missing 1 required positional argument: 's'</error></testcase></testsuite></testsuites>
+E     (Session info: headless chrome=87.0.4280.88)</error></testcase><testcase classname="" name="unit_test.list_ssus_test" time="0.000"><error message="collection failure">unit_test/list_ssus_test.py:27: in &lt;module&gt;
+    get_data()
+unit_test/list_ssus_test.py:26: in get_data
+    assert utl_ssus.get_data_ssus_list(), 'Falla'
+E   AssertionError: Falla
+E   assert None
+E    +  where None = &lt;bound method Utilities.get_data_ssus_list of &lt;list_ssus.utilities.Utilities object at 0x7fb4739a52e0&gt;&gt;()
+E    +    where &lt;bound method Utilities.get_data_ssus_list of &lt;list_ssus.utilities.Utilities object at 0x7fb4739a52e0&gt;&gt; = &lt;list_ssus.utilities.Utilities object at 0x7fb4739a52e0&gt;.get_data_ssus_list</error></testcase></testsuite></testsuites>
