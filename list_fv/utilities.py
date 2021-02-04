@@ -28,7 +28,7 @@ class Utilities:
         pass
 
     def download_file(self):
-        URL = "https://www.dian.gov.co/Proveedores_Ficticios/Proveedores_Ficticios_02092020.pdf"
+        #URL = "https://www.dian.gov.co/Proveedores_Ficticios/Proveedores_Ficticios_02092020.pdf"
         response = requests.get(URL)
         flag = True
         if response.status_code == 200:
