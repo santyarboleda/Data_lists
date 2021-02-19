@@ -10,6 +10,13 @@ Las listas que se consultan son las siguientes:
 - Lista de las Naciones Unidas
 - Lista de proveedores ficticios en Colombia
 - Lista PEPs en Colombia
+
+# Consultas en las bases de datos
+
+Dado que las bases de datos tienen diferentes formatos, y contienen información de los terceros solo de nombres, nombres e identificación, nombres y pasaportes y nombres en diferente orden (nombres y apellidos - apellidos y nombres), se presenta la siguiente imagen como resumen de estos casos y la integracion de cada lista en la aplicación:
+
+![Screenshot](https://github.com/santyarboleda/Data_lists/blob/master/static/img/Fuentes%20de%20datos.png)
+
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
