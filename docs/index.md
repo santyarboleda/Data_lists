@@ -1,9 +1,15 @@
 ## Automatización de consultas en listas restrictivas para delitos relacionados con LAFT
 
-You can use the [editor on GitHub](https://github.com/santyarboleda/Data_lists/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Esta aplicación se construyó como propuesta de solución para el trabajo de grado: "Automatización de consultas de terceros en listas restrictivas para delitos relacionados con lavado de Activos y Financiación del terrorismo" para optar por el título de Magister en Ingeniería - Analítica, trabajo dirigido por el Doctor Juan David Velásquez, Profesor Titular del Departamento de Ciencias de la Computación y la Decisión, Facultad de Minas, Universidad Nacional de Colombia.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Las listas que se consultan son las siguientes:
 
+Lista de terroristas de la Unión Europea
+Lista de Organizaciones Terroristas del Extranjero del Departamento de Estado de Estados Unidos
+Lista OFAC - Clinton
+Lista de las Naciones Unidas
+Lista de proveedores ficticios en Colombia
+Lista PEPs en Colombia
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
