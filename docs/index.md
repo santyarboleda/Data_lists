@@ -17,34 +17,24 @@ Dado que las bases de datos tienen diferentes formatos, y contienen información
 
 ![Screenshot](Fuentes%20de%20datos.png)
 
-### Markdown
+# Instalación
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+La aplicación ha sido contenerizado mediante docker.
+
+## Pre-requisitos
+
+Tener instalado docker en la máquina donde se va a desplegar
+Tamaño de la imagen: 799.35 MB
+
+Ejecutar en la consola el siguiente comando:
 
 ```markdown
-Syntax highlighted code block
+docker pull sarboledaq/laft_lists:latest
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
+Trabajo desarrollado por: Santiago Arboleda Quiroz.
 
-**Bold** and _Italic_ and `Code` text
+Email: sarboledaq@unal.edu.co
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/santyarboleda/Data_lists/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+© Copyright 2021, Santiago Arboleda
