@@ -21,12 +21,13 @@ Dado que las bases de datos tienen diferentes formatos, y contienen información
 
 La aplicación ha sido contenerizado mediante docker.
 
-## Pre-requisitos
+### Pre-requisitos
 
 Tener instalado docker en la máquina donde se va a desplegar
+
 Tamaño de la imagen: 799.35 MB
 
-## Ejecución
+### Ejecución
 
 Ejecutar en la consola el siguiente comando:
 
@@ -39,6 +40,29 @@ Una vez se haya desplegado el contenedor, se puede acceder a la aplicación a tr
 `
 http://localhost:3000/
 `
+
+Para verificar la programación de las extracciones, se debe ingresar en bash al contenedor desplegado, se puede hacer con el siguiente comando:
+
+`
+docker container exec -it nombre_contenedor bash
+`
+
+Una vez se ingresa a la consola, ejecutar el siguiente comando:
+
+`
+crontab -l
+`
+
+Debe aparecer como resultado lo siguiente:
+
+`
+1 5 * * * python3 update_lists.py
+# An empty line is required at the end of this file for a valid cron file.
+`
+
+
+
+
 
 Trabajo desarrollado por: Santiago Arboleda Quiroz.
 
