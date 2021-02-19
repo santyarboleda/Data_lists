@@ -17,9 +17,11 @@ Dado que las bases de datos tienen diferentes formatos, y contienen información
 
 ![Screenshot](Fuentes%20de%20datos.png)
 
+
 # Instalación
 
 La aplicación ha sido contenerizado mediante docker.
+
 
 ### Pre-requisitos
 
