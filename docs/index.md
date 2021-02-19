@@ -4,12 +4,12 @@ Esta aplicación se construyó como propuesta de solución para el trabajo de gr
 
 Las listas que se consultan son las siguientes:
 
-Lista de terroristas de la Unión Europea
-Lista de Organizaciones Terroristas del Extranjero del Departamento de Estado de Estados Unidos
-Lista OFAC - Clinton
-Lista de las Naciones Unidas
-Lista de proveedores ficticios en Colombia
-Lista PEPs en Colombia
+- Lista de terroristas de la Unión Europea
+- Lista de Organizaciones Terroristas del Extranjero del Departamento de Estado de Estados Unidos
+- Lista OFAC - Clinton
+- Lista de las Naciones Unidas
+- Lista de proveedores ficticios en Colombia
+- Lista PEPs en Colombia
 ### Markdown
 
 Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
