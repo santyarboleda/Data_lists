@@ -35,6 +35,12 @@ Ejecutar en la consola el siguiente comando:
 docker pull sarboledaq/laft_lists:latest
 `
 
+Posterioremente, debe ser desplegado un contenedor usando el siguiente comando:
+
+`
+docker run -d -p 3000:3000 sarboledaq/laft_lists
+`
+
 Una vez se haya desplegado el contenedor, se puede acceder a la aplicación a traves del siguiente enlace en el navegador:
 
 `
@@ -57,15 +63,14 @@ Debe aparecer como resultado lo siguiente:
 
 `
 1 5 * * * python3 update_lists.py
-# An empty line is required at the end of this file for a valid cron file.
 `
 
 
 
 
 
-Trabajo desarrollado por: Santiago Arboleda Quiroz.
+**Trabajo desarrollado por:** Santiago Arboleda Quiroz.
 
-Email: sarboledaq@unal.edu.co
+**Email:** sarboledaq@unal.edu.co
 
 © Copyright 2021, Santiago Arboleda
