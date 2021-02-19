@@ -1,4 +1,4 @@
-## Automatización de consultas en listas restrictivas para delitos relacionados con LAFT
+# Automatización de consultas en listas restrictivas para delitos relacionados con LAFT
 
 Esta aplicación se construyó como propuesta de solución para el trabajo de grado: "Automatización de consultas de terceros en listas restrictivas para delitos relacionados con lavado de Activos y Financiación del terrorismo" para optar por el título de Magister en Ingeniería - Analítica, trabajo dirigido por el Doctor Juan David Velásquez, Profesor Titular del Departamento de Ciencias de la Computación y la Decisión, Facultad de Minas, Universidad Nacional de Colombia.
 
@@ -69,8 +69,9 @@ Debe aparecer como resultado lo siguiente:
 
 
 
+
 **Trabajo desarrollado por:** Santiago Arboleda Quiroz.
 
 **Email:** sarboledaq@unal.edu.co
 
-© Copyright 2021, Santiago Arboleda
+**© Copyright 2021, Santiago Arboleda**
