@@ -26,12 +26,19 @@ La aplicación ha sido contenerizado mediante docker.
 Tener instalado docker en la máquina donde se va a desplegar
 Tamaño de la imagen: 799.35 MB
 
+## Ejecución
+
 Ejecutar en la consola el siguiente comando:
 
 `
 docker pull sarboledaq/laft_lists:latest
 `
 
+Una vez se haya desplegado el contenedor, se puede acceder a la aplicación a traves del siguiente enlace en el navegador:
+
+`
+http://localhost:3000/
+`
 
 Trabajo desarrollado por: Santiago Arboleda Quiroz.
 
