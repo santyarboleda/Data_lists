@@ -28,9 +28,9 @@ Tamaño de la imagen: 799.35 MB
 
 Ejecutar en la consola el siguiente comando:
 
-```markdown
+`
 docker pull sarboledaq/laft_lists:latest
-
+`
 
 
 Trabajo desarrollado por: Santiago Arboleda Quiroz.
